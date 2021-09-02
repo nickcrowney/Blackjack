@@ -12,6 +12,7 @@ let playerName = "";
 let nameEntered = false;
 let x=0;
 let y=0;
+let game="";
 document.getElementById("status1").style.display="none";
 document.getElementById("enterBet").style.display = "none";
 document.getElementById("start-btn").style.display = "none";
@@ -146,7 +147,7 @@ document.getElementById("start-btn").style.display = "";
 document.getElementById("enterBet").style.display = "";
 document.getElementById("betText").style.display = "";
 checkCash();
-return "Bust";
+return game ="bust";
 }
 win = () => {
     document.getElementById("status").innerHTML="You win!";
@@ -158,7 +159,7 @@ document.getElementById("start-btn").style.display = "";
 document.getElementById("enterBet").style.display = "";
 document.getElementById("betText").style.display = "";
 checkCash();
-return "Win";
+return game = "win";
 };
 
 function lose() {//{window.alert("BUST!");
@@ -172,7 +173,7 @@ function lose() {//{window.alert("BUST!");
     document.getElementById("enterBet").style.display = "";
     document.getElementById("betText").style.display = "";
     checkCash();
-    return "Lose";
+    return game = "lose";
     }
 
     function draw() {
@@ -185,7 +186,7 @@ function lose() {//{window.alert("BUST!");
         document.getElementById("betText").style.display = ""; 
     }
 checkCash = () => {
-    if (player.moneyLeft==0) {
+    if (player.moneyLeft<1) {
        let rand = Math.floor(Math.random()*3);
        let endArray = ["You're out of cash. <br>Try selling some possessions for the chance to win big!", "It's a shame we took all of your money. <br>Beg your friends for more, come back and be a success!", "No cash? No play."];
         return document.getElementById("status").innerHTML = endArray[rand];
@@ -194,7 +195,10 @@ checkCash = () => {
 };
 
 check = () => {
-    if (player.points>21) {
+    if (banker.points==21&&player.points>21) {
+        document.getElementById("status").innerHTML="Dealer has Blackjack!";
+        lose();
+    }   else if (player.points>21) {
         // if (player.hand[0].weight==11) {
         //     return player.points -=10;
         // } 
@@ -212,11 +216,16 @@ check = () => {
         // }
         //  else 
          bust();
-    } else if (banker.points>21) {
+    } else if (player.points==21 && banker.points>21) {
+        document.getElementById("status").innerHTML="You have Blackjack!";
         win();
     }  else if (banker.points== 21 && player.points ==21) {
-        draw();
-    } else if (x>=4) {
+        document.getElementById("status").innerHTML="Both have Blackjack, dealer wins!";
+        lose();
+    } else if (banker.points>21) {
+        document.getElementById("status").innerHTML="Dealer is bust!";
+        win();
+    }  else if (x>=4) {
         document.getElementById("status1").style.display="";
         document.getElementById("status1").innerHTML="Five card trick!";
         win();
@@ -224,14 +233,18 @@ check = () => {
         document.getElementById("status1").style.display="";
         document.getElementById("status1").innerHTML="Five card trick!";
         lose();
-    }
+    } else {return;}
 };
 
-checkStay = () => {
+function checkStay() {
     if (player.points<banker.points && banker.points<22) {
         lose();
     }
-    else {}
+    else if (player.points==banker.points && player.points>16) {
+        draw();
+    } else {
+        return;
+    }
 };
 /*function shuffleIt() {
     document.getElementById('btnStart') = shuffleDeck();
@@ -250,9 +263,6 @@ function dealBanker() {
 }
 
 function newGame() {
-    // if (nameEntered==false){
-    //     return document.getElementById("playerName").innerHTML="Please enter your name!";
-    // } else {
         if (isNaN(parseInt(document.getElementById("enterBet").value))) {
             document.getElementById("status").style.display="";
               return document.getElementById("status").innerHTML= "Enter your bet amount to play";
@@ -265,7 +275,6 @@ function newGame() {
             return document.getElementById("status").innerHTML= "Betting against yourself? Pathetic.";
         }     else {
     player.betAmount = parseInt(document.getElementById("enterBet").value);
-   // checkMoney()
    document.getElementById("status").style.display = "";
    if (player.moneyLeft<player.betAmount) {
     let rand = Math.floor(Math.random()*3); 
@@ -303,21 +312,28 @@ createDeck();
 shuffleDeck();
 dealPlayer();
 console.log(player);
-document.getElementById("yourCard").innerHTML = (JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)).replace(/\"/g, "");
+document.getElementById("yourCard").innerHTML = (JSON.stringify(player.hand[0].values)+JSON.stringify(player.hand[0].suits)).replace(/\"/g, "");
+document.getElementById("playerPoints").innerHTML = player.points;
+dealPlayer();
+document.getElementById("yourCard1").innerHTML = (JSON.stringify(player.hand[1].values)+JSON.stringify(player.hand[1].suits)).replace(/\"/g, "");
 document.getElementById("playerPoints").innerHTML = player.points;
 dealBanker();
-document.getElementById("bankerCard").innerHTML = (JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)).replace(/\"/g, "");
+document.getElementById("bankerCard").innerHTML = (JSON.stringify(banker.hand[0].values)+JSON.stringify(banker.hand[0].suits)).replace(/\"/g, "");
+document.getElementById("bankerPoints").innerHTML = banker.points;
+dealBanker();
+document.getElementById("bankerCard1").innerHTML = (JSON.stringify(banker.hand[1].values)+JSON.stringify(banker.hand[1].suits)).replace(/\"/g, "");
 document.getElementById("bankerPoints").innerHTML = banker.points;
 console.log("y"+y);
 console.log("x"+x);
 console.log(banker.points);
 console.log(player.hand[0].weight);
-x+=1;
-y+=1;
+x+=2;
+y+=2;
+check()
 }}
 
 }
-// }
+
 //document.getElementById("playerName").innerHTML = playerName;
 // document.getElementById("playerCard").innerHTML = JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits);
 // document.getElementById("playerPoints").innerHTML = player.points;
@@ -326,8 +342,7 @@ y+=1;
 function hit() {{
     check();
     dealPlayer();
-    if (x==1) {document.getElementById("yourCard1").innerHTML = ("     "+JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)+"     ").replace(/\"/g, "");
-} else if (x==2) {document.getElementById("yourCard2").innerHTML =("    "+JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)+"     ").replace(/\"/g, "");
+    if (x==2) {document.getElementById("yourCard2").innerHTML =("    "+JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)+"     ").replace(/\"/g, "");
 } else if (x==3) {document.getElementById("yourCard3").innerHTML = ("    "+JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)+"     ").replace(/\"/g, "");
 } else if (x==4) {document.getElementById("yourCard4").innerHTML = ("    "+JSON.stringify(player.hand[x].values)+JSON.stringify(player.hand[x].suits)+"     ").replace(/\"/g, "");
 } 
@@ -335,13 +350,11 @@ function hit() {{
 
     check();
     dealBanker();
- //   check();
-    if (x==1) {document.getElementById("bankerCard1").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
-} else if (x==2) {document.getElementById("bankerCard2").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
-} else if (x==3) {document.getElementById("bankerCard3").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
-} else if (x==4) {document.getElementById("bankerCard4").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
-} 
-    document.getElementById("bankerCard1").innerHTML = (JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)).replace(/\"/g, "");
+    if (y==2) {document.getElementById("bankerCard2").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+} else if (y==3) {document.getElementById("bankerCard3").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+} else if (y==4) {document.getElementById("bankerCard4").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+}   
+    //document.getElementById("bankerCard1").innerHTML = (JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)).replace(/\"/g, "");
     document.getElementById("bankerPoints").innerHTML = banker.points;
     y+=1;
     x+=1;}
@@ -349,21 +362,37 @@ function hit() {{
     console.log("x"+x);
     console.log(banker);
     console.log(banker.points);
+    check();
+    if (game == "win") {
+        return;
+    } else {}
 }
 function stay() {{
     checkStay();
-    check();
+    if (game == "lose") {
+         return;
+    } else if (game == "draw") {
+        return;
+    }
+    else {
+    //check();
     dealBanker();
-    document.getElementById("bankerCard").innerHTML = JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits);
-document.getElementById("playerPoints").innerHTML = player.points;
-document.getElementById("bankerPoints").innerHTML = banker.points;     
-
+    if (y==2) {document.getElementById("bankerCard2").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+} else if (y==3) {document.getElementById("bankerCard3").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+} else if (y==4) {document.getElementById("bankerCard4").innerHTML = ("     "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
+} 
+//    document.getElementById("bankerCard").innerHTML = JSON.stringify(banker.hand[0].values)+JSON.stringify(banker.hand[y].suits);
+    document.getElementById("playerPoints").innerHTML = player.points;
+    document.getElementById("bankerPoints").innerHTML = banker.points;     
 check();
 y+=1;
-}console.log(banker);
+}
+console.log(banker);
 console.log("y"+y);
 console.log("x"+x);
+console.log(player.points);
 console.log(banker.points);
+}
 }
 
 
