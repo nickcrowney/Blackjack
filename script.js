@@ -1,8 +1,5 @@
 //NEW
 
-// things to fix: 3 times bet money lost and won
-//moneyLeft or betAmount issue
-
 const suits = ["♠", "♥", "♣", "♦"];//["S", "H", "C", "D"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let deck = [];
@@ -472,12 +469,12 @@ function stay() {
     }
     else if (banker.points<player.points) {
         document.getElementById("status").style.display = "";
-        document.getElementById("status").innerHTML="bankerless than player and banker less than 22"; // stops here
+   //     document.getElementById("status").innerHTML="bankerless than player and banker less than 22"; 
         dealBanker();
         document.getElementById("bankerCard3").innerHTML = ("   "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
         
         document.getElementById("bankerPoints").innerHTML = banker.points;
-
+// stops here
         checkStay();
         y+=1;
     } else if (banker.points==player.points&&banker.points>15){
@@ -487,10 +484,10 @@ function stay() {
         document.getElementById("status").innerHTML="Draw"; 
         document.getElementById("status").innerHTML="else if"; //
         
-    } else {
+    } else {}
         if (banker.points<player.points) {
         document.getElementById("status").style.display = "";
-        document.getElementById("status").innerHTML="second if banker less than player and banker less than 22"; //
+  //      document.getElementById("status").innerHTML="second if banker less than player and banker less than 22"; //
         dealBanker();
         document.getElementById("bankerCard4").innerHTML = ("    "+JSON.stringify(banker.hand[y].values)+JSON.stringify(banker.hand[y].suits)+"     ").replace(/\"/g, "");
         checkStay();
@@ -503,7 +500,7 @@ function stay() {
         document.getElementById("status").innerHTML="second else if"; //
         
     } else {
-    } }
+    } 
     
 }
     //check();
