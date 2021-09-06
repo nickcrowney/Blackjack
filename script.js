@@ -482,7 +482,7 @@ function stay() {
         document.getElementById("bankerPoints").innerHTML = banker.points;
         document.getElementById("status").style.display = "";
         document.getElementById("status").innerHTML="Draw"; 
-        document.getElementById("status").innerHTML="else if"; //
+     //   document.getElementById("status").innerHTML="else if"; //
         
     } else {}
         if (banker.points<player.points) {
@@ -497,7 +497,7 @@ function stay() {
         draw();
         document.getElementById("status").style.display = "";
         document.getElementById("status").innerHTML="Draw";
-        document.getElementById("status").innerHTML="second else if"; //
+     //   document.getElementById("status").innerHTML="second else if"; //
         
     } else {
     } 
