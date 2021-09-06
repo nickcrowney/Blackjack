@@ -1,0 +1,68 @@
+/* 
+CSS declaration format:
+property-name: value;
+*/
+ 
+/* CSS declarations */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:ivory;
+    background-image: url("https://t3.ftcdn.net/jpg/01/04/28/34/240_F_104283429_F1sNVmmFCvtqtULRH1ALt26dNBI9MdwS.jpg");
+    background-size: cover;
+    text-align: center;
+}
+h1 {
+    color: goldenrod;
+    text-align: center;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 50pt;
+    border-color: black;
+    border-radius: 10px;
+    
+}
+h2 {
+    color:ivory;
+    text-align: center;
+    font-style: italic;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+span.name {
+    text-align: center;
+}
+#entName {
+    font-style: italic;
+}
+#playerText {
+    font-style: oblique;
+    color:ivory;
+    text-align: left;
+}
+#playerName {
+    text-align: left;
+    color: ivory;
+}
+
+.btn {
+    padding:5px;
+
+    font-family:Arial, Helvetica, sans-serif;
+    color: goldenrod
+    ;
+    background-color: black;
+    font-weight:lighter;
+    justify-content: space-between;
+    margin: 10px;
+    border: goldenrod;
+    border-radius: 5px;
+    border-style: groove;
+    
+}
+.yourhand {
+text-align: left;
+
+}
+.dealerhand {
+text-align: right;
+}
