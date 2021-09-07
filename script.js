@@ -21,7 +21,7 @@ document.getElementById("betDoneNumber").style.visibility="hidden";
 document.getElementById("dollarBet").style.visibility="hidden";
 document.getElementById("nameInvite").style.display="none";
 document.getElementById("hit-btn").style.visibility="hidden";
-document.getElementById("stay-btn").style.visibility="hidden";
+document.getElementById("stay-btn").style.visibility="hidden"; 
 
 function inputPlayer() { 
     player.moneyLeft=100;
