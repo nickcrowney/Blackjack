@@ -218,6 +218,7 @@ checkStay = () => {
         document.getElementById("status").innerHTML=`Dealer got a five card trick! Lose $${player.betAmount}!`;
     } else if (banker.points== 21) {
     document.getElementById("status").style.visibility ="visible";
+    lose();
     document.getElementById("status").innerHTML=`Dealer got Blackjack! You lose $${player.betAmount}!`;
     }
     else if (player.points<banker.points && banker.points<22) {
