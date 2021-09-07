@@ -110,8 +110,8 @@ function shuffleDeck () {
 function bust() {
 player.moneyLeft -= player.betAmount;
 document.getElementById("status").innerHTML=`You're bust! You lose $${player.betAmount}!`;
-document.getElementById("hit-btn").disabled=true;
-document.getElementById("stay-btn").disabled=true;
+document.getElementById("hit-btn").style.visibility="hidden";
+document.getElementById("stay-btn").style.visibility="hidden";
 document.getElementById("moneyLeft").innerHTML = player.moneyLeft;
 document.getElementById("start-btn").style.display="";
 document.getElementById("enterBet").style.display="";
