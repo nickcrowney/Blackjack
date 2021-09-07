@@ -1,0 +1,109 @@
+/* 
+CSS declaration format:
+property-name: value;
+*/
+ 
+/* CSS declarations */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:ivory;
+    background-image: url("https://t3.ftcdn.net/jpg/01/04/28/34/240_F_104283429_F1sNVmmFCvtqtULRH1ALt26dNBI9MdwS.jpg");
+    background-size: cover;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+h1 {
+    color: goldenrod;
+    text-align: center;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 30pt;
+    border-color: black;
+    border-radius: 10px;
+}
+/* .status {
+   
+} */
+h2 {
+    color:ivory;
+    text-align: center;
+    font-style: italic;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.name {
+    text-align: center;    
+    font-size: larger;
+}
+
+#inputName {
+    font-size: medium;
+    margin: 0px
+}
+
+.betresult {
+    font-size: xx-large;
+    color: goldenrod;
+}
+#betDoneText {
+    font-size: x-large;
+}
+.money {
+    font-size: larger ;
+    vertical-align: middle;
+}
+#entName {
+    font-style: italic;
+}
+#playerText {
+    font-style: oblique;
+    color:ivory;
+    text-align: left;
+
+
+}
+#playerName {
+    text-align: left;
+    color: ivory;
+    font-size: x-large;
+}
+
+.btn {
+    padding:20px;
+
+    font-family:Arial, Helvetica, sans-serif;
+    color: goldenrod    ;
+    background-color: black;
+    font-weight:lighter;
+    justify-content: space-between;
+    margin: 10px;
+    border: goldenrod;
+    border-radius: 10px;
+    border-style: groove;
+}
+
+.change {
+    padding: 5px;
+}
+.yourhand {
+text-align: left;
+
+}
+.dealerhand {
+text-align: right;
+}
+
+.footer {
+    background-color: black;
+    color: goldenrod;
+    height: 10vh;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    text-align: center;
+    margin-left: 0pt;
+}
+
+.nameInvite {
+    font-size: small;
+}
