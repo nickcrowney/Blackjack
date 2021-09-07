@@ -488,4 +488,4 @@ document.getElementById("bankerPoints").innerHTML = banker.points;
 // console.log("x"+x);
 // console.log(banker);
 // console.log(player);
-}
+} 
