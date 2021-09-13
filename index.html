@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+    <h1>Blackjack</h1>
+        <h2 id="status"></h2>  
+        <span class="name" id="playerText">Player: </span>
+        <span class="name" id="playerName"></span><br>
+        <button  class="btn change" id="changePlayer" >Change Player</button> <!--onclick="changePlayer()"-->
+        <input class="name" type="text" id="inputName" minlength="2">
+        <input class="btn change" id="inputPlayer" type="submit" value="Enter" > <!--onclick="inputPlayer();"-->
+    <div class= "bet">
+        <span  id="betText">Enter bet amount: </span>
+        <input type="number" min="0" step="5" default ="0" width="5" id="enterBet" required= "required">
+        <button class="btn change" type="submit" id="start-btn" >New Game</button> <!--onclick="newGame();"-->
+    </div>
+    <div class="betresult">
+        <span id="betDoneText">Current Bet: </span>
+        <span id="dollarBet">$</span>
+        <span id="betDoneNumber"></span>
+    </div><br>
+    <span class="yourhand">Your Hand: </span> <span class="yourhand"id="yourCard"></span>
+    <span>   </span>
+    <span id="yourCard1"></span>
+    <span>   </span>
+    <span id="yourCard2"></span>
+    <span>   </span><span id="yourCard3"></span>
+    <span>   </span>
+    <span id="yourCard4"></span><br><br>
+    <span>Your total: </span><span id="playerPoints"></span><br><br>
+    <span class="dealerhand">Dealer's Hand: </span>
+    <span class="dealerhand"id="bankerCard"></span>
+    <span>   </span><span id="bankerCard1"></span>
+    <span>   </span><span id="bankerCard2"></span>
+    <span>   </span><span id="bankerCard3"></span>
+    <span>   </span><span id="bankerCard4"></span><br><br>
+    <span>Dealer's total: </span>
+    <span id="bankerPoints"></span><br>
+   <br>
+    <div class="bottom-btns">
+        <button class="btn" id="hit-btn">HIT</button><span> </span> <!--onclick="hit();"-->
+        <button class="btn" id="doubleDown" >Double down?</button><span> </span><!--onclick="doubleDown()"-->
+        <button class="btn" id="stay-btn" >STAND</button> <!--onclick="stay();"-->
+    </div>
+    <div class="footer">  
+        <div class="money"><span>Money available: </span>$<span class="money" id="moneyLeft">0</span> <br>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
